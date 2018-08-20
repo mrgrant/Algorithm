@@ -13,6 +13,7 @@ def Merge(left_list,right_list):
     alist += right_list[j:]
     return alist
 
+
 def MergeSort(origin_list):
     if len(origin_list)>1:
         mid = len(origin_list)//2
@@ -23,6 +24,7 @@ def MergeSort(origin_list):
         return Merge(left_list,right_list)
     else:
         return origin_list
+
 
 alist = [54, 26, 93, 17]
 res = MergeSort(alist)

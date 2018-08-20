@@ -1,5 +1,4 @@
 def MergeSort(alist):
-
     if len(alist) > 1:
         mid = len(alist)//2
         left_list = alist[:mid]
@@ -29,7 +28,6 @@ def MergeSort(alist):
             i = i + 1
             k = k + 1
 
-
-alist = [54, 26, 93, 17, 77, 31, 44, 55, 20]
+import random
+alist = random.sample(range(100),100)
 MergeSort(alist)
-print(alist)
