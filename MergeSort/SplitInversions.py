@@ -32,7 +32,10 @@ def count_and_merge(alist):
             j = j + 1
     return cnt
 
+alist = []
+with open('MergeSort/IntegerArray.txt','r') as f:
+    for i in f.readlines():
+        alist.append(i)
 
-alist = [1, 3, 5, 2, 4, 6]
 res = count_and_merge(alist)
 print(res)

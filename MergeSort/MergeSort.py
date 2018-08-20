@@ -29,5 +29,5 @@ def MergeSort(alist):
             k = k + 1
 
 import random
-alist = random.sample(range(100),100)
+alist = random.sample(range(1000000),1000000)
 MergeSort(alist)
