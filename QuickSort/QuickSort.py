@@ -6,7 +6,7 @@ def quicksort(A):
     equal = []
     greater = []
     if len(A) > 1:
-        #random pivots
+        # random pivots
         pivot = A[random.randrange(len(A))]
         for x in A:
             if x < pivot:
