@@ -1,21 +1,6 @@
 import queue
 
 
-def generate_edges(graph):
-    edges = []
-    for node in graph:
-        for neighbor in graph[node]:
-            edges.append([node, neighbor])
-    return edges
-
-
-def generate_vertices(graph):
-    vertices = []
-    for node in graph:
-        vertices.append(node)
-    return vertices
-
-
 def generate_explored_dic(graph):
     explored_dic = {}
     for node in graph:
