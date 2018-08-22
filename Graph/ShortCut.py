@@ -1,6 +1,7 @@
 import random
 import copy
 import math
+import time
 
 
 def generate_edges(graph):
@@ -48,10 +49,12 @@ if __name__ == '__main__':
     MinCut = []
     n = len(vertices)
     N = int((n**2)*math.log(n, math.exp(1)))
-    for i in range(N):
+    t1 = time.clock()
+    for i in range(1500):
         v = copy.deepcopy(vertices)
         e = copy.deepcopy(edges)
         MinCut.append(contraction(v, e))
-
     # print(MinCut)
     print(min(MinCut))
+    t2 = time.clock()
+    print(t2-t1)
