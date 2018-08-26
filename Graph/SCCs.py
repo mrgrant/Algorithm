@@ -46,6 +46,7 @@ def dfs_second(graph, f):
     """
     result = []
     seen = set()
+    length = []
 
     def dfs(node):
         for neighbor in graph[node]:
@@ -62,23 +63,36 @@ def dfs_second(graph, f):
             temp =[]
             scc = dfs(node)
             result.append(scc)
-    return result
+            length.append(len(scc))
+    return result, length
+
+
+def load_graph(filename):
+    graph = {}
+    with open(filename, 'r') as f:
+        for line in f:
+            x, y = map(int, line.split())
+            if x not in graph:
+                graph[x] = []
+            graph[x].append(y)
+    return graph
 
 
 if __name__ == '__main__':
-    graph = {
-        1: [7],
-        2: [5],
-        3: [9],
-        4: [1],
-        5: [8],
-        6: [3, 8],
-        7: [4, 9],
-        8: [2],
-        9: [6]
-    }
-
+    # graph = {
+    #     1: [7],
+    #     2: [5],
+    #     3: [9],
+    #     4: [1],
+    #     5: [8],
+    #     6: [3, 8],
+    #     7: [4, 9],
+    #     8: [2],
+    #     9: [6]
+    # }
+    graph = load_graph('SCC.txt')
     graph_rev = reverse(graph)
     f = dfs_loop(graph)
 
-    print(dfs_second(graph_rev, f))
+    SCCs, length = dfs_second(graph_rev, f)
+    print(sorted(length, reverse=True))
