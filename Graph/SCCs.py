@@ -1,5 +1,7 @@
 # Find all Strong Connected Components in O(V+E) time using Kosaraju's Two-pass algorithm
 import collections
+import sys
+sys.setrecursionlimit(2**30)
 
 
 def dfs_loop(garph):
@@ -11,12 +13,14 @@ def dfs_loop(garph):
     seen = set()
 
     def dfs(node):
-
-        for neighbor in graph[node]:
-            if neighbor not in seen:
-                seen.add(neighbor)
-                dfs(neighbor)
-        # set finishing time
+        if node not in graph:
+            pass
+        else:
+            for neighbor in graph[node]:
+                if neighbor not in seen:
+                    seen.add(neighbor)
+                    dfs(neighbor)
+            # set finishing time
         f.append(node)
 
     g = collections.OrderedDict(sorted(graph.items(), key=lambda k: k[0], reverse=True))
@@ -49,11 +53,14 @@ def dfs_second(graph, f):
     length = []
 
     def dfs(node):
-        for neighbor in graph[node]:
-            if neighbor not in seen:
-                seen.add(neighbor)
-                dfs(neighbor)
-        temp.append(node)
+        if node not in graph:
+            pass
+        else:
+            for neighbor in graph[node]:
+                if neighbor not in seen:
+                    seen.add(neighbor)
+                    dfs(neighbor)
+            temp.append(node)
         return temp
 
     while len(f) != 0:
@@ -90,7 +97,7 @@ if __name__ == '__main__':
     #     8: [2],
     #     9: [6]
     # }
-    graph = load_graph('SCC.txt')
+    graph = load_graph('Graph/SCC.txt')
     graph_rev = reverse(graph)
     f = dfs_loop(graph)
 
