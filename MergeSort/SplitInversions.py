@@ -25,17 +25,19 @@ def count_and_merge(alist):
             alist[k] = left_list[i]
             k = k + 1
             i = i + 1
-            cnt += len(left_list) - i
         while i == len(left_list) and j < len(right_list):
             alist[k] = right_list[j]
             k = k + 1
             j = j + 1
     return cnt
 
-alist = []
-with open('MergeSort/IntegerArray.txt','r') as f:
-    for i in f.readlines():
-        alist.append(i)
 
-res = count_and_merge(alist)
-print(res)
+if __name__ == '__main__':
+    alist = []
+
+    with open('IntegerArray.txt','r') as f:
+        for i in f.readlines():
+            alist.append(int(i))
+    res = count_and_merge(alist)
+    print(res)
+
