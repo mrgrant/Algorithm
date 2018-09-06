@@ -41,12 +41,27 @@ def dijkstra(graph, initial):
     return visited, path
 
 
-if __name__ == '__main__':
-    graph = {
-        'S': {'V': 1, 'W': 4},
-        'V': {'W': 2, 'T': 6},
-        'W': {'T': 3},
-        'T': {}}
+def load_graph(filename):
+    graph = {}
+    with open(filename) as f:
+        for line in f:
+            x, *y = line.split()
+            graph[int(x)] = {}
+            for subs in y:
+                edge, dis = subs.split(',')
+                graph[int(x)][int(edge)] = int(dis)
+    return graph
 
-    visit, path = dijkstra(graph, 'S')
-    print(visit)
+
+if __name__ == '__main__':
+    graph = load_graph("SSSP.txt")
+    # graph = {
+    #     'S': {'V': 1, 'W': 4},
+    #     'V': {'W': 2, 'T': 6},
+    #     'W': {'T': 3},
+    #     'T': {}}
+
+    visit, path = dijkstra(graph, 1)
+    v = [7,37,59,82,99,115,133,165,188,197]
+    for i in v:
+        print(visit[i])

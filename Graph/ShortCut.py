@@ -3,12 +3,14 @@ import copy
 import math
 import time
 
-
 def generate_edges(graph):
     edges = []
     for node in graph:
         for neighbor in graph[node]:
-            edges.append([node, neighbor])
+            if [neighbor, node] in edges:
+                pass
+            else:
+                edges.append([node, neighbor])
     return edges
 
 
@@ -36,14 +38,19 @@ def contraction(ver, e):
     return len(e)
 
 
-if __name__ == '__main__':
-    # read graph from txt
+def load_data(filename):
     graph = {}
-    with open("data.txt") as f:
+    with open(filename) as f:
         for line in f:
             x, *y = map(int, line.split())
             graph[x] = y
+    return graph
 
+
+if __name__ == '__main__':
+    # read graph from txt
+    # graph = {1: [2, 3], 2: [1, 3, 4], 3: [1, 2, 4], 4: [2, 3]}
+    graph = load_data('data.txt')
     vertices = generate_vertices(graph)
     edges = generate_edges(graph)
     MinCut = []
