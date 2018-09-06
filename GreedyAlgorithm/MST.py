@@ -74,7 +74,7 @@ if __name__ == '__main__':
     #     'V': {'W': 2, 'T': 6, 'S': 1},
     #     'W': {'S': 4, 'T': 3, 'V': 2},
     #     'T': {'V': 6, 'W': 3}}
-    graph = load_graph('edges.txt')
+    graph = load_graph('edges_test.txt')
     if not is_connect(graph):
         print('Graph not connect!!!')
     else:
