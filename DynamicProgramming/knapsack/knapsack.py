@@ -1,4 +1,7 @@
 # knapsack problem
+import copy
+
+
 def load_data(filename):
     alist = list()
     with open(filename, 'r') as f:
@@ -28,8 +31,28 @@ def knapsack(W, N, data):
     return A
 
 
+def knapsack_big(W, N, data):
+    # compress the array in two column
+    A = [[None for x in range(W + 1)] for y in range(2)]
+    for x in range(W + 1):
+        A[0][x] = 0
+
+    for i in range(1, N):
+        for x in range(W+1):
+            if data[i-1][1] > x:
+                A[1][x] = A[0][x]
+            else:
+                A[1][x] = max(A[0][x], A[0][x-data[i-1][1]]+data[i-1][0])
+        A[0] = copy.copy(A[1])
+        print(i)
+    return A
+
+
 if __name__ == '__main__':
     # data[i][value, weight]
-    W, N, data = load_data('knapsack1.txt')
-    A = knapsack(W, N, data)
-    print(A[N-1][W])
+    W, N, data = load_data('knapsack_big.txt')
+    # A1 = knapsack(W, N, data)
+    # print(A1[N-1][W])
+
+    A = knapsack_big(W, N, data)  # 4243395
+    print(A[1][W])
